@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Execution(ExecutionMode.CONCURRENT)
 public class ExceptionsTest {
-    private static final int charSize = 1_000_000_000;
+    private static final int CHAR_SIZE = 1_000_000_000;
     private static final String JAVA_HEAP_SPACE = "Java heap space";
     private static LargeObject largeObject;
     private Path tempDir;
@@ -39,7 +39,7 @@ public class ExceptionsTest {
         OutOfMemoryError error = assertThrows(OutOfMemoryError.class, () -> {
             List<String> list = new ArrayList<>();
             while (true){
-                list.add(new String(new char[charSize]));
+                list.add(new String(new char[CHAR_SIZE]));
             }
         });
         assertEquals(JAVA_HEAP_SPACE, error.getMessage());
